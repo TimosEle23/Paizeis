@@ -1,0 +1,36 @@
+# Render free tier. The instance sleeps after 15 minutes idle and takes ~50s to
+# wake, which is fine for beta and not fine for a public app — move to the
+# Starter plan before launch (see docs/plan.md).
+services:
+  - type: web
+    name: paizeis-api
+    runtime: node
+    plan: free
+    region: frankfurt
+    buildCommand: npm install && npm run build --workspace @paizeis/api
+    startCommand: npm run start --workspace @paizeis/api
+    healthCheckPath: /api/v1/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: NODE_VERSION
+        value: "20"
+      # Everything below is set in the Render dashboard, never committed.
+      - key: MONGODB_URI
+        sync: false
+      - key: JWT_ACCESS_SECRET
+        generateValue: true
+      - key: JWT_REFRESH_SECRET
+        generateValue: true
+      - key: CORS_ORIGINS
+        sync: false
+      - key: STRIPE_SECRET_KEY
+        sync: false
+      - key: STRIPE_WEBHOOK_SECRET
+        sync: false
+      - key: RESEND_API_KEY
+        sync: false
+      - key: GOOGLE_CLIENT_IDS
+        sync: false
+      - key: APPLE_BUNDLE_ID
+        sync: false

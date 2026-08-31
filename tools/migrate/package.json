@@ -1,0 +1,26 @@
+{
+  "name": "@paizeis/migrate",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "One-shot Supabase (Postgres) \u2192 MongoDB migration. Phase 1.",
+  "scripts": {
+    "migrate": "tsx src/index.ts",
+    "verify": "tsx src/verify.ts",
+    "typecheck": "tsc --noEmit",
+    "export:check": "tsx src/checkExport.ts"
+  },
+  "dependencies": {
+    "@paizeis/api": "*",
+    "@paizeis/shared": "*",
+    "date-fns": "^4.1.0",
+    "date-fns-tz": "^3.2.0",
+    "dotenv": "^16.4.7",
+    "mongoose": "^8.9.5"
+  },
+  "devDependencies": {
+    "@types/node": "^22.16.5",
+    "tsx": "^4.19.2",
+    "typescript": "^5.8.3"
+  }
+}

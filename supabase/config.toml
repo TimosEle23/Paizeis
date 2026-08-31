@@ -1,0 +1,22 @@
+project_id = "kbubtcvqfamhpuwnorkh"
+
+[functions.create-venue-manager]
+verify_jwt = true
+
+[functions.send-invitation]
+verify_jwt = true
+
+[functions.create-test-managers]
+verify_jwt = true
+
+[functions.check-rate-limit]
+verify_jwt = false
+
+[functions.stripe-webhook]
+verify_jwt = false
+
+[functions.geocode-venues]
+verify_jwt = true
+
+[functions.rls-selftest]
+verify_jwt = true

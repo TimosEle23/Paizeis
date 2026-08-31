@@ -1,0 +1,25 @@
+{
+  "name": "paizeis",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Paizeis — pitch booking for Cyprus. Web, iOS and Android on one MongoDB API.",
+  "workspaces": [
+    "apps/*",
+    "packages/*",
+    "tools/*"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "dev:api": "npm run dev --workspace @paizeis/api",
+    "dev:web": "npm run dev --workspace @paizeis/web",
+    "dev:mobile": "npm run start --workspace @paizeis/mobile",
+    "build": "npm run build --workspaces --if-present",
+    "test": "npm run test --workspaces --if-present",
+    "lint": "npm run lint --workspaces --if-present",
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "check:boundaries": "node tools/check/boundaries.mjs",
+    "check": "npm run typecheck && npm run check:boundaries && npm test"
+  }
+}

@@ -1,0 +1,37 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  check:
+    name: typecheck · boundaries · tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install
+        run: npm ci
+
+      - name: Typecheck every workspace
+        run: npm run typecheck
+
+      - name: Client/server boundary
+        run: npm run check:boundaries
+
+      # The suite starts a real MongoDB replica set per file via
+      # mongodb-memory-server. Booking creation depends on a transaction, which
+      # a standalone mongod cannot run — so tests against one would pass while
+      # production behaved differently.
+      - name: Tests
+        run: npm test
+        env:
+          NODE_ENV: test
